@@ -436,7 +436,8 @@ ULONG SpyGetEventType(
 			return FILE_SYSTEM_EVENT_MOVE;
 		}
 		// Get File delete information
-		else if (Data->Iopb->Parameters.SetFileInformation.FileInformationClass == FileDispositionInformation) 
+		else if (Data->Iopb->Parameters.SetFileInformation.FileInformationClass == FileDispositionInformation ||
+            Data->Iopb->Parameters.SetFileInformation.FileInformationClass == FileDispositionInformationEx) 
 		{
 			PFILE_DISPOSITION_INFORMATION info = (PFILE_DISPOSITION_INFORMATION)Data->Iopb->Parameters.SetFileInformation.InfoBuffer;
 			if (info != NULL && info->DeleteFile) 
